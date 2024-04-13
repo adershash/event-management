@@ -1,0 +1,33 @@
+.btns{
+
+    align-items: center;
+    flex:1 0 28%;
+    height: 15rem;
+    border-radius: 15px;
+    font-size: 2rem;
+    
+    
+
+}
+
+.contain{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 4rem;
+
+}
+
+@media (max-width:580px){
+    .btns{
+        height:10rem;
+    }
+}
+
+@media (max-width:360px){
+    .btns{
+        height:7rem;
+        flex:1 0 50%;
+    }
+}
