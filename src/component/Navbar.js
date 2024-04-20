@@ -63,9 +63,9 @@ function Navbar() {
       <div className="icons">
         <ul>
           <li>
-          <a href='#'>
+          <Link to='/search'>
           <CiSearch fill='black'/>
-          </a>
+          </Link>
           </li>
 
           <li>

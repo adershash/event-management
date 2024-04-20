@@ -112,7 +112,7 @@ const handleChange = (e) => {
         <div className="row">
             <div className="col-12">
                 <form className="md-float-material form-material" action="#" method="POST" onSubmit={handleSubmit}>
-                    <div className="auth-box card">
+                    <div className="auth-box card-login">
                         <div className="card-block">
                             <div className="row">
                                 <div className="col-md-12">

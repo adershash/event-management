@@ -11,6 +11,7 @@ import { useContext, useEffect } from 'react';
 import { AuthContext, FirebaseContext } from './store/FirebaseContext';
 import {auth} from './firebase/Config'
 import { onAuthStateChanged } from 'firebase/auth';
+import Search from './pages/Search';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
 
         <Route element={<AdminHome/>} path='/adminhome' />      
        <Route element={<CreateEvent/>} path='/createevent'/>
+       <Route element={<Search/>} path='/search'></Route>
         </Routes>
 
   

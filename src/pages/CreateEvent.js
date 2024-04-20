@@ -19,7 +19,7 @@ function CreateEvent() {
         eventType:'',
         coordinator:'',
         noftickets:'',
-        aoftickets:'',
+        time:'',
         eventDate:'',
     
        
@@ -63,7 +63,7 @@ const handleSubmit=()=>{
             console.log(url);
             const dbref=collection(db,'events')
 
-addDoc(dbref,{eventName:formData.eventName,url,userid:auth.currentUser.uid,eventType:formData.eventType,eventDate:formData.eventDate,coordinator:formData.coordinator,aoftickets:formData.aoftickets,noftickets:formData.noftickets,createdAt:date.toDateString()})
+addDoc(dbref,{eventName:formData.eventName,url,userid:auth.currentUser.uid,eventType:formData.eventType,eventDate:formData.eventDate,coordinator:formData.coordinator,time:formData.time,noftickets:formData.noftickets,createdAt:date.toDateString()})
              
         });
     }
@@ -83,7 +83,7 @@ navigate('/adminhome')
 
         <h1 class="text-white mb-4">Create Event</h1>
 
-        <div class="card" >
+        <div class="card-create" >
           <div class="card-body">
 
             <div class="row align-items-center pt-4 pb-3">
@@ -155,12 +155,12 @@ navigate('/adminhome')
             <div class="row align-items-center py-3">
               <div class="col-md-3 ps-5">
 
-                <h6 class="mb-0">Available tickets</h6>
+                <h6 class="mb-0">Time</h6>
 
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="number" class="form-control form-control-lg" name='aoftickets' value={formData.aoftickets} onChange={handleChange} />
+                <input type="time" class="form-control form-control-lg" name='time' value={formData.time} onChange={handleChange} />
 
               </div>
             </div>

@@ -128,7 +128,7 @@ function SignUp() {
         <div className="row">
             <div className="col-sm-12">
                 <form className="md-float-material form-material" action="#" method="POST" onSubmit={handleSubmit}>
-                    <div className="auth-box card">
+                    <div className="auth-box card-signup">
                         <div className="card-block">
                             <div className="row">
                                 <div className="col-md-12">
