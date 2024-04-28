@@ -1,10 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './tickets.css'
-import { AuthContext } from '../store/FirebaseContext'
+import { AuthContext,FirebaseContext } from '../store/FirebaseContext'
 import { useNavigate,useLocation } from 'react-router-dom'
 import { useContext } from 'react'
 import QRCode from "react-qr-code";
 import generatePDF, { Resolution, Margin } from 'react-to-pdf';
+import { collection, query,getDocs,where } from 'firebase/firestore'
 
 
 
@@ -50,10 +51,31 @@ const options: Options = {
   const downloadPdf = () => generatePDF(getTargetElement, options);
   
 function Tickets() {
+  const {state}=useLocation()
+  const {db}=useContext(FirebaseContext)
+  const [evt,setEvent]=useState([])
+  useEffect(()=>{
+    const dbref=collection(db,'events')
+    const q=query(dbref,where("eventName","==",state.details.eventName))
+    getDocs(q).then((snap)=>{
+      const allevents=
+      snap.docs.map((docs)=>{
+        return{
+          ...docs.data(),
+          ticketid:docs.id
 
+
+        }
+
+      })
+      setEvent(allevents)
+      console.log(evt)
+    })
+  })
+  
 
    
-    const {state}=useLocation()
+   
     const {user}=useContext(AuthContext)
     const navigate=useNavigate()
     console.log(state)
@@ -73,15 +95,18 @@ function Tickets() {
            <img src={state.details.url} alt="" /> 
 
         </div>
+        {evt.map((ev)=>(
         <div className="view-details">
             <h3>{state.details.eventName?`Event Name:${state.details.eventName}`:null}</h3>
             <h4>{state.details.coordinator?`Coordinator:${state.details.coordinator}`:null}</h4>
             <h4>{`Date: ${state.details.eventDate}`}</h4>
             <h4>{`Participant: ${user.displayName}`}</h4>
             <h4>{state.details.time!==undefined?`Time: ${state.details.time}`:null}</h4>
-            <h4>{`Ticket id:${state.details.userid}`}</h4>
-            <h4>{`Ticket no:${state.details.noftickets}`}</h4>
             
+            <h4>{`Ticket id:${ev.ticketid}`}</h4>
+            <h4>{`Ticket no:${ev.noftickets}`}</h4>
+            
+             
 
             <div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
     <QRCode
@@ -93,6 +118,7 @@ function Tickets() {
 </div>
 <button onClick={handleClick}>Download Ticket</button> 
         </div>
+         )) }
         
       </div>
       
