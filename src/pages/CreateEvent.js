@@ -33,7 +33,7 @@ function CreateEvent() {
             ...formData,
             [name]:value,
         })
-        console.log(formData)
+        
 
     }
 

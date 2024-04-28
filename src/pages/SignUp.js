@@ -51,34 +51,43 @@ function SignUp() {
         try {
           
             await validationSchema.validate(formData, {abortEarly: false});
-            console.log("Form Submitted", formData);
+           // console.log("Form Submitted", formData);
           } catch (error) {
             const newErrors = {};
       
             error.inner.forEach((err) => {
               newErrors[err.path] = err.message;
-              console.log(err)
+              //console.log(err)
             });
       
             setErrors(newErrors);
           }
-          await createUserWithEmailAndPassword(auth, formData.email, formData.password)
+         
+          await createUserWithEmailAndPassword(auth, formData.email, formData.confirmPassword)
         .then((userCredential) => {
             // Signed in
+            if(errors.confirmPassword)
+            {
+              navigate('/signin')
+            }
+            else{
             const user = userCredential.user;
             const docref=collection(db,"users")
             updateProfile(auth.currentUser,{displayName:formData.firstName,photoURL:null})
             
             addDoc(docref,{id:auth.currentUser.uid,firstName:formData.firstName,email:formData.email})
-            console.log(user);
+            
+            navigate('/signin')
+            }
 
-            navigate("/signin")
             // ...
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
+            alert(errorMessage)
+            navigate('/signup')
             // ..
         });
     };
@@ -139,7 +148,7 @@ function SignUp() {
                             <div className="form-group form-primary">
                              
                                  <input type="text" className="form-control" name="firstName"  placeholder="Display name" id="first_name" value={formData.firstName} onChange={handleChange}/> 
-                                 {errors.email && <div className="error">{errors.firstName}</div>}
+                                 {errors.firstName && <div className="error">{errors.firstName}</div>}
                             </div>
 
                             <div className="form-group form-primary">
@@ -149,19 +158,19 @@ function SignUp() {
 
                             <div className="form-group form-primary">
                                <input type="password" className="form-control" name="password" placeholder="Password"  id="password" value={formData.password} onChange={handleChange}/>
-                               {errors.email && <div className="error">{errors.password}</div>}
+                               {errors.password && <div className="error">{errors.password}</div>}
                             </div>
 
                             <div className="form-group form-primary">
                                 <input type="password" className="form-control" name="confirmPassword" placeholder="Confirm password" id="confirmPassword" value={formData.confirmPassword} onChange={handleChange}/>
-                                {errors.email && <div className="error">{errors.confirmPassword}</div>}
+                                {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
                             </div>
 
 
                             <div className="row">
                                 <div className="col-md-12">
 
-                                    <input type="submit" className="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="Signup Now"/>
+                                    <input type="submit" className="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="Signup Now" />
                                    
                                 </div>
                             </div>

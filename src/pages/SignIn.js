@@ -3,8 +3,9 @@ import {  signInWithEmailAndPassword,GoogleAuthProvider, signInWithPopup    } fr
 import { FirebaseContext } from '../store/FirebaseContext';
 import * as y from 'yup'
 import {auth} from '../firebase/Config'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 import { collection,addDoc,} from 'firebase/firestore';
+
 
 import './signin.css'
 
@@ -155,7 +156,7 @@ const handleChange = (e) => {
                             </div>
                             <br/>
 
-                           
+                            <p className="text-inverse text-center">Don't have an account? <Link to="/signup" data-abc="true">Sign Up</Link></p>
                         </div>
                     </div>
                 </form>

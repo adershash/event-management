@@ -8,8 +8,10 @@ import { collection,getDocs } from 'firebase/firestore'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useNavigate } from 'react-router-dom'
 
 function Banner(props) {
+  const navigate=useNavigate()
   const settings = {
     dots: true,
     infinite:true,
@@ -65,12 +67,13 @@ function Banner(props) {
 //  })
  
 //    })
+
   return (
-    <div className="main-banner">
+    <div className="main-banner" >
         <h2>{props.title}</h2>
       <Slider {...settings}>
         {props.evt.map((ev) => (
-          <div className="banner">
+          <div className="banner" onClick={()=>{navigate('/viewpost',{state:{ev}})}}>
             <div className="banner-top">
               <img
                 src={

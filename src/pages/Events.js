@@ -6,7 +6,7 @@ import { FirebaseContext } from '../store/FirebaseContext'
 import { collection, getDocs ,query,where} from 'firebase/firestore'
 
 
-function Home() {
+function Events() {
 
   const [evt,setEvents]=useState([])
   const [evt1,setEvents1]=useState([])
@@ -65,7 +65,7 @@ getDocs(q2).then((snapshot)=>{
    
     <div>
       <Navbar></Navbar>
-      <Banner evt={evt}></Banner>
+     
       <RowPost title='Workshop' evt={evt}></RowPost>
       <RowPost title="Sports" evt={evt1}></RowPost>
       <RowPost title="Other" evt={evt2}></RowPost>
@@ -74,4 +74,5 @@ getDocs(q2).then((snapshot)=>{
   )
 }
 
-export default Home
+export default Events
+

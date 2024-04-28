@@ -12,7 +12,7 @@
   }
   
   .card {
-    border: 1px solid #fff;
+    border: none;
     background: rgb(193, 183, 183);
     border-radius: 8px;
     overflow: hidden;
@@ -20,6 +20,7 @@
     height: 260px;
     color: #fff;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   
   .card-top h1 {

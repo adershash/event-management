@@ -12,6 +12,10 @@ import { AuthContext, FirebaseContext } from './store/FirebaseContext';
 import {auth} from './firebase/Config'
 import { onAuthStateChanged } from 'firebase/auth';
 import Search from './pages/Search';
+import ViewPost from './pages/ViewPost';
+import Tickets from './pages/Tickets';
+import Events from './pages/Events';
+
 
 function App() {
 
@@ -32,7 +36,6 @@ function App() {
 
    <Routes>
 
-
       <Route element={<Home/>} exact path='/' />
         <Route element={<SignIn/>}  path='/signin'  />
     
@@ -41,6 +44,10 @@ function App() {
         <Route element={<AdminHome/>} path='/adminhome' />      
        <Route element={<CreateEvent/>} path='/createevent'/>
        <Route element={<Search/>} path='/search'></Route>
+       <Route element={<ViewPost/>} path='/viewpost'></Route>
+       <Route element={<Tickets/>} path='/tickets'></Route>
+       <Route element={<Events/>} path='/events'></Route>
+      
         </Routes>
 
   

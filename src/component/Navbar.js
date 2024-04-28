@@ -37,10 +37,10 @@ function Navbar() {
       <div className={ state ? "mobile-menu-link" : "menu-link"}>
         <ul>
           <li>
-            <a href="#">Home</a>
+            {/* {user.displayName==='admin'? <Link to='/adminhome'>Home</Link>:<Link to='/'>Home</Link> } */}
           </li>
           <li>
-            <a href="#">Events</a>
+            {/* <Link to="/events">Events</Link> */}
           </li>
           <li>
             <a href="#">About</a>
@@ -101,9 +101,7 @@ function Navbar() {
           <div className="user-info">
             <a href='#'>View Profile</a>
           </div>
-          <div className="user-info">
-            <a href='#'>Events</a>
-          </div>
+         
           <div className="user-info">
             <a href='#'>Certificate</a>
           </div>

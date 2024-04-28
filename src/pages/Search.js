@@ -2,8 +2,10 @@ import React, { useContext, useEffect ,useState} from 'react'
 import './search.css'
 import { FirebaseContext } from '../store/FirebaseContext'
 import { getFirestore,collection,query,where,getDocs } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
 
 function Search() {
+  const navigate=useNavigate()
   
   const [srh,setSearch]=useState('')
   const [evtcpy,setevtCpy]=useState([])
@@ -65,7 +67,7 @@ getDocs(ref).then((snapshot)=>{
 
       {evtcpy.map((ev) => (
         <div className='search-result'>
-          <div className="card-search">
+          <div className="card-search" onClick={()=>{navigate('/viewpost',{state:{ev}})}}>
             <div className="card-search-top">
               <img
                 src={
