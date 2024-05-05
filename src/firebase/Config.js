@@ -5,6 +5,9 @@ import "firebase/storage"
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDJR13QHaSXXe3r29CKFZRl_4Hku9JMA0E",
   authDomain: "event-63d41.firebaseapp.com",

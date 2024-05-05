@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { addDoc, collection,updateDoc,doc } from 'firebase/firestore'
 import { auth } from '../firebase/Config'
+import ViewSeats from '../seat/ViewSeats'
 function ViewPost() {
   const date=new Date()
   const {db}=useContext(FirebaseContext)
@@ -14,7 +15,9 @@ function ViewPost() {
   const navigate=useNavigate()
   let data=state.ev.noftickets
   const [details,setDetails]=useState({})
- const [updata,setupData]=useState(state.ev.noftickets-1)
+ const [updata,setupData]=useState(state.ev.noftickets)
+ const [flag,setFlag]=useState(false)
+ const [ticketid,setTicket]=useState('')
 
  useEffect(()=>{
   setDetails(state.ev)
@@ -31,22 +34,39 @@ function ViewPost() {
   }
   else{
     
-    const dbref=collection(db,'bookings')
+    
+    
+    
     const docref=doc(db,'events',state.ev.id)
     let sub=updata
-    setupData(sub-1)
+    setupData(parseInt(state.ev.noftickets)-1)
     console.log(updata)
    
-     updateDoc(docref,{noftickets:updata})
-    
+     updateDoc(docref,{noftickets:parseInt(state.ev.noftickets-1)})
+    if(state.ev.eventType==="stage"){
+      // navigate('/viewseats',{state:{details}})
+      setFlag(true)
+
+      
+    }
+    else {
+      const dbref=collection(db,'bookings')
 
      data={noftickets:updata}
-    addDoc(dbref,{eventName:state.ev.eventName,userid:auth.currentUser.uid,userName:user.displayName,bookedAt:date.toDateString(),docid:state.ev.id},)
+    addDoc(dbref,{eventName:state.ev.eventName,userid:auth.currentUser.uid,userName:user.displayName,bookedAt:date.toDateString(),docid:state.ev.id,ticketno:parseInt(state.ev.noftickets-1),eventType:state.ev.eventType,seatNumbers:"empty"}).then((snap)=>{
+      
+      details.ticid=snap.id
+
+   console.log(details)
+    })
    console.log(sub)
-    if(sub==updata){
+   //console.log(ticketid)
+   
+    if(sub===updata){
       setTimeout(() => {
         navigate('/tickets',{state:{details}})
     }, 5000);
+  
       
     
     }
@@ -54,14 +74,16 @@ function ViewPost() {
 
   }
 }
+}
  }
  
   
   
 
   return (
+    
     <div className='view-post'>
-      <div className='view-main'>
+     {!flag && <div className='view-main'>
         <div className="view-image">
            <img src={state.ev.url} alt="" /> 
 
@@ -72,8 +94,10 @@ function ViewPost() {
             <h4>{`Date: ${state.ev.eventDate}`}</h4>
             <h4>{state.ev.time!==undefined?`Time: ${state.ev.time}`:null}</h4>
             <button onClick={onClicked}>Book now</button>
+           
         </div>
-      </div>
+      </div>}
+      {flag && <ViewSeats details={details}></ViewSeats>}
     </div>
   )
 }

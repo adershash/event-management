@@ -15,6 +15,10 @@ import Search from './pages/Search';
 import ViewPost from './pages/ViewPost';
 import Tickets from './pages/Tickets';
 import Events from './pages/Events';
+import CustomSeat from './seat/CustomSeat';
+import ViewSeats from './seat/ViewSeats';
+import TicketsStage from './pages/TicketsStage';
+import AdminView from './seat/AdminView';
 
 
 function App() {
@@ -47,6 +51,10 @@ function App() {
        <Route element={<ViewPost/>} path='/viewpost'></Route>
        <Route element={<Tickets/>} path='/tickets'></Route>
        <Route element={<Events/>} path='/events'></Route>
+       <Route element={<CustomSeat/>} path='/customseat'></Route>
+       <Route element={<ViewSeats/>} path='/viewseats'></Route>
+       <Route element={<TicketsStage/>} path='/ticketsstage'></Route>
+       <Route element={<AdminView/>} path='/adminview'></Route>
       
         </Routes>
 

@@ -50,7 +50,7 @@ const options: Options = {
   
   const downloadPdf = () => generatePDF(getTargetElement, options);
   
-function Tickets() {
+function TicketsStage() {
   const {state}=useLocation()
   const {db}=useContext(FirebaseContext)
   const [evt,setEvent]=useState([])
@@ -106,6 +106,7 @@ function Tickets() {
             <h4>{`Date: ${state.details.eventDate}`}</h4>
             <h4>{`Participant: ${user.displayName}`}</h4>
             <h4>{state.details.time!==undefined?`Time: ${state.details.time}`:null}</h4>
+            <h4>{`Seats: ${state.details.seatNumbers}`}</h4>
             
             <h4>{`Ticket id:${state.details.ticid}`}</h4>
             <h4>{`Ticket no:${ev.noftickets}`}</h4>
@@ -132,4 +133,4 @@ function Tickets() {
   )
 }
 
-export default Tickets
+export default TicketsStage

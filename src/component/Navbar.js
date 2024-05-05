@@ -30,7 +30,7 @@ function Navbar() {
    <div className='main'>
     <nav className='main-nav'>
       <div className="logo">
-        <h2>BookMyEvent</h2>
+        <h2>Event Hub</h2>
       </div>
 
 

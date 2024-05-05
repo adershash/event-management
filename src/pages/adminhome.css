@@ -1,24 +1,65 @@
-.btns{
+.dash{
+    width: 100%;
+    height: 100vh;
+    background: #c382ec;
+    position: fixed;
+    color: black;
+}
+.dash .main-section{
+    width: 100%;
+    height: 100%;
+    background: rgb(247, 245, 244);
+    display: flex;
 
+}
+.dash .main-section .contain{
+    width: 20vw;
+    height: 90%;
+    background: #625589;
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 1px;
+}
+.dash .main-section .contain .nav-btn{
+    width: 100%;
+    height: 5rem;
+    border-top: 2px solid #f5f4f1;
+    background: none;
+    transition: all ease .5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.dash .main-section .contain .nav-btn.active{
+    background: #c382ec;
+}
+.dash .main-section .contain .nav-btn svg{
+    margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+}
+.dash .main-section .contain .nav-btn:hover{
+    background: #c382ec;
+}
+.dash .main-section .contain .nav-btn:last-child{
+    border-bottom: 2px solid rgb(245, 244, 241);
+}
+.dash .main-section .right{
+    margin-left: 2rem;
+    width: 75vw;
+    height: 90%;
+}
+
+.btns{
     align-items: center;
     flex:1 0 28%;
     height: 15rem;
     border-radius: 15px;
     font-size: 2rem;
-    
-    
-
 }
-
-.contain{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 4rem;
-
-}
-
 @media (max-width:580px){
     .btns{
         height:10rem;
