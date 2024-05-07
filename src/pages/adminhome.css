@@ -51,6 +51,10 @@
     margin-left: 2rem;
     width: 75vw;
     height: 90%;
+    overflow-y: scroll;
+}
+.dash .main-section .right::-webkit-scrollbar{
+    display: none;
 }
 
 .btns{

@@ -141,7 +141,7 @@ getDocs(q).then((snapshot)=>{
             // }
         
     };
-    return(   <button id={props.id} className="seat1" disabled={f?false:true} onClick={() => { handleClicked(props.id,props.seat) }}  style={{backgroundColor: activeA? "#1ea83c" : "white", background:f?'white':'#eee'}}></button>)
+    return(   <button id={props.id} className="seat1" disabled={f?false:true} onClick={() => { handleClicked(props.id,props.seat) }}  style={{backgroundColor: activeA? "#1ea83c" : "white", background:f?'white':'#eee',border:f?'1px solid #1ea83c':'0',color:activeA&&'white'}}>{props.seat+(props.id+1)}</button>)
             
 }
 

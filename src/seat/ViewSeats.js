@@ -5,6 +5,7 @@ import { useState,useContext,useEffect } from 'react'
 import { getDocs,collection,where,query,addDoc } from 'firebase/firestore'
 import Seat from './Seat'
 import { auth } from '../firebase/Config'
+import './viewseats.css'
 
 function ViewSeats(props) {
     const {state}=useLocation()
@@ -108,7 +109,7 @@ function ViewSeats(props) {
             <p>select seats</p>
           </div>
           <div className='desk'>
-          <button id="desk"><i className="fa-solid fa-user"> Stage</i></button>
+          <button id="stage"><i className="fa-solid fa-user " > Stage</i></button>
           </div>
           { Array(parseInt(section)).fill(true).map((item,ind)=>(
             
@@ -123,7 +124,7 @@ function ViewSeats(props) {
             
             <p>{`selected seat : ${seats}`}</p>
             <p>{`number of seat selected : ${count}`}</p>
-            <button onClick={handleBook}>book now</button>
+            <button onClick={handleBook} className='seat-booking-btn' id='seat-booking-btn'>book now</button>
           </div>
           </div>      
          

@@ -1,0 +1,15 @@
+#seat-booking-btn{
+    height: 40px;
+    width:150px;
+    border:1px #EC5E71;
+    background-color: #EC5E71;
+    color: white;
+    border-radius: 1px;
+}
+
+#stage{
+    height: 80px;
+    width:300px;
+    border: 1px solid white;
+    background-color: #EAFCFD;
+}

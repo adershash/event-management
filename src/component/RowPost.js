@@ -15,7 +15,7 @@ function RowPost(props) {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
     focusOnSelect:true,
@@ -71,7 +71,7 @@ function RowPost(props) {
   return (
     
        <div className="main-rowpost">
-        <h2>{props.title}</h2>
+        <h2 style={{fontWeight:'900',fontSize:'25px'}}>{props.title}</h2>
       <Slider {...settings}>
         {props.evt.map((ev) => (
           <div className="card"  onClick={()=>{navigate('/viewpost',{state:{ev}})}}>
@@ -82,7 +82,7 @@ function RowPost(props) {
                 }
                
               />
-              <h1>{ev.eventName}</h1>
+              <h1 style={{marginBottom:'10px'}}>{ev.eventName}</h1>
             </div>
            
           </div>

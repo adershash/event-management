@@ -23,9 +23,15 @@ function ViewPost() {
   setDetails(state.ev)
   
  })
+ console.log("details",details)
 
  const onClicked=()=>{
-  if(state.ev.noftickets<=0){
+  if(state.ev.eventType==='stage'){
+    state.ev.noftickets=1000000000
+    console.log('stage',state.ev.noftickets)
+  }
+  
+  if(parseInt(state.ev.noftickets)<=state.ev.ticketNo ){
     alert('tickets not available')
   }
   else{
@@ -42,7 +48,7 @@ function ViewPost() {
     setupData(parseInt(state.ev.noftickets)-1)
     console.log(updata)
    
-     updateDoc(docref,{noftickets:parseInt(state.ev.noftickets-1)})
+     updateDoc(docref,{ticketNo:parseInt(state.ev.ticketNo)+1})
     if(state.ev.eventType==="stage"){
       // navigate('/viewseats',{state:{details}})
       setFlag(true)
@@ -53,23 +59,24 @@ function ViewPost() {
       const dbref=collection(db,'bookings')
 
      data={noftickets:updata}
-    addDoc(dbref,{eventName:state.ev.eventName,userid:auth.currentUser.uid,userName:user.displayName,bookedAt:date.toDateString(),docid:state.ev.id,ticketno:parseInt(state.ev.noftickets-1),eventType:state.ev.eventType,seatNumbers:"empty"}).then((snap)=>{
+    addDoc(dbref,{eventName:state.ev.eventName,userid:auth.currentUser.uid,userName:user.displayName,bookedAt:date.toDateString(),docid:state.ev.id,ticketno:details.ticketNo+1,eventType:state.ev.eventType,seatNumbers:"empty"}).then((snap)=>{
       
       details.ticid=snap.id
+      details.ticno=state.ev.ticketNo+1
 
    console.log(details)
     })
    console.log(sub)
    //console.log(ticketid)
    
-    if(sub===updata){
+   
       setTimeout(() => {
         navigate('/tickets',{state:{details}})
     }, 5000);
   
       
     
-    }
+    
 
 
   }

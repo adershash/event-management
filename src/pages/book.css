@@ -1,0 +1,22 @@
+
+.Book-main{
+    width:100%;
+    height:auto;
+}
+.Book{
+    width: 100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    overflow-y:scroll;
+    
+
+    
+
+}
+.Book::-webkit-scrollbar{
+    display: none;
+}
+

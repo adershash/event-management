@@ -20,7 +20,7 @@
 }
 
 .view-ticket .view-ticket-main .view-image{
-    width:40%;
+    width:30%;
     height: 100%;
     background-color: rgb(248, 68, 100);
 }
@@ -43,6 +43,7 @@
     border: none;
     border-radius: 10px;
     text-align: center;
+    margin-top: 35rem;
 }
 
 .view-ticket .view-ticket-main .view-image img{

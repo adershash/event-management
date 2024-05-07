@@ -6,6 +6,7 @@ import { FirebaseContext } from '../store/FirebaseContext';
 import { addDoc,collection } from 'firebase/firestore';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Seat from './Seat';
+import AdminPreview from './AdminPreview';
 
 function CustomSeat(props) {
 
@@ -167,7 +168,7 @@ function CustomSeat(props) {
           <button id="desk"><i className="fa-solid fa-user"> Stage</i></button>
           </div>
           { Array(index).fill(true).map((item,ind)=>(
-          <Column number={number} r={ind}  handleClick={handleClick} str4={norow}/>))}
+          <Column1 number={number} r={ind}  handleClick={handleClick} str4={norow}/>))}
           </div>
           <div>
           <div className='selected'>
@@ -187,7 +188,7 @@ function CustomSeat(props) {
     
 }
 
-function Column(props) {
+function Column1(props) {
 
   let c = ''
   if(props.r===0){c='A'}else if(props.r===1){c='B'}else if(props.r===2){c='C'}else{c='D'}
@@ -196,7 +197,7 @@ function Column(props) {
         <div className='column'>
           <h4 style={{textAlign:'center'}}>Section - {c}</h4>
         {Array(props.number).fill(true).map((item, index) => (
-          <Seat r={c+''+(index+1)} st1={props.st1} st2={props.st2} st3={props.st3} handleClick={props.handleClick} noRow={props.str4}/>
+          <AdminPreview r={c+''+(index+1)} st1={props.st1} st2={props.st2} st3={props.st3} handleClick={props.handleClick} noRow={props.str4}/>
         
         ))}
         {console.log(props.str4)}

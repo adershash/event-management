@@ -18,7 +18,11 @@ import Events from './pages/Events';
 import CustomSeat from './seat/CustomSeat';
 import ViewSeats from './seat/ViewSeats';
 import TicketsStage from './pages/TicketsStage';
-import AdminView from './seat/AdminView';
+import UserBook from './pages/UserBook';
+import Certificate from './pages/certificate/Certificate';
+import CertificateView from './pages/certificate/CertificateView';
+import EditData from './pages/EditData';
+
 
 
 function App() {
@@ -54,7 +58,10 @@ function App() {
        <Route element={<CustomSeat/>} path='/customseat'></Route>
        <Route element={<ViewSeats/>} path='/viewseats'></Route>
        <Route element={<TicketsStage/>} path='/ticketsstage'></Route>
-       <Route element={<AdminView/>} path='/adminview'></Route>
+       <Route element={<UserBook/>} path='/userbook'></Route>
+       <Route element={<Certificate/>} path='/certificate'></Route>
+       <Route element={<CertificateView/>} path='/certificateview'></Route>
+       <Route element={<EditData/>} path='/editdata'></Route>
       
         </Routes>
 

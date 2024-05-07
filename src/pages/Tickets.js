@@ -10,7 +10,7 @@ import { collection, query,getDocs,where } from 'firebase/firestore'
 
 
 const options: Options = {
-    filename: "advanced-example.pdf",
+    filename: "ticket.pdf",
     method: "save",
     // default is Resolution.MEDIUM = 3, which should be enough, higher values
     // increases the image quality but also the size of the PDF, so be careful
@@ -72,9 +72,9 @@ function Tickets() {
 
       })
       setEvent(allevents)
-      //console.log(evt)
+      console.log('evt',evt)
     })
-  })
+  },[])
   
 
    
@@ -108,7 +108,7 @@ function Tickets() {
             <h4>{state.details.time!==undefined?`Time: ${state.details.time}`:null}</h4>
             
             <h4>{`Ticket id:${state.details.ticid}`}</h4>
-            <h4>{`Ticket no:${ev.noftickets}`}</h4>
+            <h4>{ev.ticketNo!==0?`Ticket no:${ev.ticketNo}`:null}</h4>
             
              
 
@@ -120,11 +120,12 @@ function Tickets() {
     viewBox={`0 0 256 256`}
     />
 </div>
-<button onClick={handleClick}>Download Ticket</button> 
+
         </div>
          )) }
         
       </div>
+      <button onClick={handleClick}>Download Ticket</button> 
       
     </div>
   

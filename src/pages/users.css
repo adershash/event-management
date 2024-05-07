@@ -9,7 +9,7 @@
 .users9 .tb-section{
     margin-top: 0rem;
     width: 100%;
-    height: 80vh;
+    height: auto;
     overflow-y: scroll;
 }
 .users9 .tb-section::-webkit-scrollbar{

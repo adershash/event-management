@@ -27,7 +27,9 @@ function Navbar() {
 
   }
   return (
+    
    <div className='main'>
+  
     <nav className='main-nav'>
       <div className="logo">
         <h2>Event Hub</h2>
@@ -40,13 +42,11 @@ function Navbar() {
             {/* {user.displayName==='admin'? <Link to='/adminhome'>Home</Link>:<Link to='/'>Home</Link> } */}
           </li>
           <li>
-            {/* <Link to="/events">Events</Link> */}
+            <Link to="/userbook">Bookings</Link>
           </li>
+         
           <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Contact us</a>
+            <Link to="/certificateview">Certificate</Link>
           </li>
           <li>
          {user?null :<button type="button" class="signout-in" id="btnSignup" onClick={()=>navigate('/signup')}>Sign Up</button>}
@@ -98,12 +98,10 @@ function Navbar() {
           <div className="user">
             <h3> {user? user.displayName:<span>hi hello</span>}</h3>
           </div>
-          <div className="user-info">
-            <a href='#'>View Profile</a>
-          </div>
+          
          
           <div className="user-info">
-            <a href='#'>Certificate</a>
+            <Link to='/certificateview'>Certificate</Link>
           </div>
           <div className="user-info">
             <Link to='/' onClick={handleSignout}>SignOut</Link>

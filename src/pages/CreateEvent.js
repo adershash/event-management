@@ -67,7 +67,7 @@ const handleSubmit=()=>{
             console.log(url);
             const dbref=collection(db,'events')
 
-addDoc(dbref,{eventName:formData.eventName,url,userid:auth.currentUser.uid,eventType:formData.eventType,eventDate:formData.eventDate,coordinator:formData.coordinator,time:formData.time,noftickets:formData.noftickets,createdAt:date.toDateString()}).then(
+addDoc(dbref,{eventName:formData.eventName,url,userid:auth.currentUser.uid,eventType:formData.eventType,eventDate:formData.eventDate,coordinator:formData.coordinator,time:formData.time,noftickets:formData.noftickets,createdAt:date.toDateString(),ticketNo:0}).then(
   (res)=>{setFormData({
     eventName:'',
     eventType:'',
@@ -130,10 +130,11 @@ if(formData.eventType==='stage'){
           <h6 class="mb-0">Event coordinator</h6>
           <input type="text" class="inp" name='coordinator' value={formData.coordinator} onChange={handleChange}/> 
         </div>
+        {formData.eventType!=='stage'?
         <div className='row'>
           <h6 class="mb-0">Number of tickets</h6>
           <input type="number" class="inp"  name='noftickets' value={formData.noftickets} onChange={handleChange} />
-        </div>
+        </div>:null}
         <div className='row'>
           <h6 class="mb-0">Time</h6>
           <input type="time" class="inp" name='time' value={formData.time} onChange={handleChange} />
