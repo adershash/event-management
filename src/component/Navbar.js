@@ -28,7 +28,7 @@ function Navbar() {
   }
   return (
     
-   <div className='main'>
+   <div className='main' >
   
     <nav className='main-nav'>
       <div className="logo">
@@ -37,16 +37,16 @@ function Navbar() {
 
 
       <div className={ state ? "mobile-menu-link" : "menu-link"}>
-        <ul>
+        <ul >
           <li>
             {/* {user.displayName==='admin'? <Link to='/adminhome'>Home</Link>:<Link to='/'>Home</Link> } */}
           </li>
-          <li>
-            <Link to="/userbook">Bookings</Link>
+          <li >
+            <Link  to="/userbook">Bookings</Link>
           </li>
          
           <li>
-            <Link to="/certificateview">Certificate</Link>
+            <Link  to="/certificateview">Certificate</Link>
           </li>
           <li>
          {user?null :<button type="button" class="signout-in" id="btnSignup" onClick={()=>navigate('/signup')}>Sign Up</button>}
@@ -60,7 +60,7 @@ function Navbar() {
       </div>
 
 
-      <div className="icons">
+      <div className="icons" >
         <ul>
           <li>
           <Link to='/search'>
@@ -85,7 +85,7 @@ function Navbar() {
 
       <div className="hamburger">
       <a href="#" onClick={()=>{setState(!state)}}>
-      <RxHamburgerMenu />
+      <RxHamburgerMenu  />
       </a>
 
       </div>

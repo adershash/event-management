@@ -23,6 +23,7 @@
     background: #d2c9ef;
     border-radius: 1rem;
     margin-left: 3rem;
+    margin-top: 2rem;
     overflow: hidden;
     position: relative;
 }
@@ -54,7 +55,7 @@
     justify-content: space-around;
     position: absolute;
     bottom: 0;
-    background: linear-gradient(to bottom, #987bf613 0%,#8369dc94 50%, #3c315fbc 100%);;
+    background: linear-gradient(to bottom, #987bf613 0%,#0f062e94 50%, #0e0723bc 100%);;
 }
 .edit-event .card-section .e-card .control-box button{
     width: 7rem;

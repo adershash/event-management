@@ -18,11 +18,11 @@ function AdminHome() {
     let [userEvent,setUserEvent] = useState(0)
     let [bookingEvent,setBookingEvent]=useState(0)
     let [certificateEvent,setCertificateEvent]=useState(0)
-    useEffect(()=>{
-        if(!user){
-            navigate('/signin')
-        }
-    })
+    // useEffect(()=>{
+    //     if(!user){
+    //         navigate('/signin')
+    //     }
+    // })
    useEffect(()=>setCreateEvent(1),[])
   return (
     <div className='dash'>

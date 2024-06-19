@@ -109,7 +109,7 @@ function TicketsStage() {
             <h4>{`Seats: ${state.details.seatNumbers}`}</h4>
             
             <h4>{`Ticket id:${state.details.ticid}`}</h4>
-            <h4>{ev.ticketNo?`Ticket no:${ev.ticketNo}`:null}</h4>
+            {/* <h4>{ev.ticketNo?`Ticket no:${ev.ticketNo}`:null}</h4> */}
             
              
 

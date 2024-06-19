@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FirebaseContext } from '../../store/FirebaseContext'
 import { where,query,collection,getDocs, addDoc } from 'firebase/firestore'
 import './admincertificate.css'
+import Swal from 'sweetalert2'
 
 function AdminCertificate() {
     const {db}=useContext(FirebaseContext)
@@ -124,7 +125,9 @@ function Btn(props){
     const [cvt,setCvt]=useState([])
     const {db}=useContext(FirebaseContext)
     const dbref=collection(db,'certificate')
-    let flag=false
+    const [flag,setFlag]=useState(false)
+    let f=false
+    let check=[]
 
     useEffect(()=>{
       getDocs(dbref).then((snapshot)=>{
@@ -146,31 +149,56 @@ function Btn(props){
       
       })
 
+     
+
 
     },[])
 
-    cvt.map((cv)=>{
-      if(cv.eventName===props.ev.eventName){
-        
-        flag=true
-        console.log('flag',flag)
-        
-
+    useEffect(()=>{
+      check=cvt.filter((data)=>data.eventName.includes(props.ev.eventName))
+      if(check.length!=0){
+        setFlag(true)
       }
+      console.log('event check',check)
     })
+
+    // cvt.map((cv)=>{
+    //   if(cv.eventName===props.ev.eventName){
+        
+    //     setFlag(true)
+    //     console.log('flag',flag)
+    //   }
+    // })
+    
+   
     
     const onclickHandler=()=>{
-        setActive(!active)
-
+      
        
+        let t_date=new Date()
+        let evt_date=new Date(props.ev.eventDate)
 
+       if(t_date.getTime()<=evt_date.getTime()){
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: "Event has to be conducted",
+          showConfirmButton: false,
+          timer: 1500
+        });
+       }
+       else{
+        setFlag(true)
+        setActive(!active)
         props.evt1.map((ev1)=>{
             console.log(ev1.eventName)
             if(props.ev.eventName===ev1.eventName){
+              
         
         addDoc(dbref,{evtid:props.ev.id,flag:1,eventName:props.ev.eventName,eventDate:props.ev.eventDate,userid:ev1.userid})
             }
     })
+  }
     }
 
 

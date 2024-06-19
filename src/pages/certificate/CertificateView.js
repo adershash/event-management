@@ -181,7 +181,7 @@ function Btn1(props){
         setCdata(cd.filter((data)=>{return(data.eventName.includes(props.wk.eventName))}))
       
         console.log('cdata',cdata)
-        if(cdata.length==0){
+        if(cdata.length===0){
           alert('not published')
         }
         else{

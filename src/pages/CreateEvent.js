@@ -15,6 +15,9 @@ function CreateEvent() {
     const [docid,setDocid]=useState({evid:''})
     const date=new Date()
     const navigate=useNavigate()
+    
+    let t_date=new Date()
+    
   
 
     const [formData,setFormData]=useState({
@@ -39,12 +42,35 @@ function CreateEvent() {
         
 
     }
+    
+  
+    let e_date=new Date(formData.eventDate)
+    let hr=parseInt(formData.time.slice(0,2))
+    let min=parseInt(formData.time.slice(3,5))
+    e_date.setHours(hr,min,0)
+    console.log(e_date)
+    console.log(t_date.getTime())
 
 const handleSubmit=()=>{
     let l;
    if(!poster){
     alert("please select a file")
    }
+   if(formData.eventName==='' || formData.eventType===''|| formData.eventDate===''||formData.coordinator===''||formData.time===''){
+    alert('all fields are required')
+   }
+   else{
+    if(t_date.getTime()>e_date.getTime()){
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Invalid Date Entered",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
+    }
+    else{
    
    const storage=getStorage()
    const storageRef = ref(storage, `/images/${poster.name}`)
@@ -106,7 +132,7 @@ if(formData.eventType==='stage'){
 
 
 
-}
+   }}}
 
   return (
     <div className='create-event'>
@@ -114,11 +140,11 @@ if(formData.eventType==='stage'){
       <div className='form'>
         <div className='row'>
           <h6 class="mb-0">Event Name</h6>
-          <input type="text" class="inp" name='eventName' value={formData.eventName} onChange={handleChange}/> 
+          <input type="text" class="inp" name='eventName' value={formData.eventName} onChange={handleChange} required/> 
         </div>
         <div className='row'>
           <h6 class="mb-0">Event Type</h6>
-          <select  className='inp' name="eventType" value={formData.eventType} onChange={handleChange} defaultValue={'Select type'} >
+          <select  className='inp' name="eventType" value={formData.eventType} onChange={handleChange} defaultValue={'Select type'} required >
                 <option value="">Select type</option>
                     <option value="stage">Stage</option>
                     <option value="workshop">Workshop</option>
@@ -128,20 +154,20 @@ if(formData.eventType==='stage'){
         </div>
         <div className='row'>
           <h6 class="mb-0">Event coordinator</h6>
-          <input type="text" class="inp" name='coordinator' value={formData.coordinator} onChange={handleChange}/> 
+          <input type="text" class="inp" name='coordinator' value={formData.coordinator} onChange={handleChange} required/> 
         </div>
         {formData.eventType!=='stage'?
         <div className='row'>
           <h6 class="mb-0">Number of tickets</h6>
-          <input type="number" class="inp"  name='noftickets' value={formData.noftickets} onChange={handleChange} />
+          <input type="number" class="inp"  name='noftickets' value={formData.noftickets} onChange={handleChange} required />
         </div>:null}
         <div className='row'>
           <h6 class="mb-0">Time</h6>
-          <input type="time" class="inp" name='time' value={formData.time} onChange={handleChange} />
+          <input type="time" class="inp" name='time' value={formData.time} onChange={handleChange} required />
         </div>
         <div className='row'>
           <h6 class="mb-0">Event date</h6>
-          <input type="date" class="inp" name='eventDate' value={formData.eventDate} onChange={handleChange}/>
+          <input type="date" class="inp" name='eventDate' value={formData.eventDate} onChange={handleChange} required/>
         </div>
         <div className='row'>
           <h6 class="mb-0">Upload poster</h6>

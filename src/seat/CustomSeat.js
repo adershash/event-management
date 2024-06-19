@@ -7,6 +7,7 @@ import { addDoc,collection } from 'firebase/firestore';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Seat from './Seat';
 import AdminPreview from './AdminPreview';
+import Swal from 'sweetalert2';
 
 function CustomSeat(props) {
 
@@ -25,10 +26,31 @@ function CustomSeat(props) {
 
     //array of selected seats
     //let seatarray = seats
-    const handleSubmit=()=>{
-      
+    const handleSubmit=(e)=>{
+
+      e.preventDefault()
+      if(number&&rows&&norow&&state.docid.evid!=undefined){
         const dbref=collection(db,'seat')
-        addDoc(dbref,{rows:number,sections:rows,rseat:norow,eventID:state.docid.evid}).then((res)=>{navigate('/adminhome')})
+        addDoc(dbref,{rows:number,sections:rows,rseat:norow,eventID:state.docid.evid}).then((res)=>{navigate('/adminhome')}).then(()=>{
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Seats are added",
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+        })
+      }
+      else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!all fields are not filled or event has not been created",
+          
+        });
+       
+      }
 
 
 
@@ -152,7 +174,7 @@ function CustomSeat(props) {
             </div>
             
             </div>
-            <button onClick={handleSubmit}>Add </button>
+            <button onClick={handleSubmit} className='seatAdding'>Add </button>
             </form>
         <div className='mainheading'>
         <h5 style={{marginTop:'60px'}}>Stage preview</h5>
@@ -165,7 +187,7 @@ function CustomSeat(props) {
             <p>select seating availability for the stage</p>
           </div>}
           <div className='desk'>
-          <button id="desk"><i className="fa-solid fa-user"> Stage</i></button>
+          <button id="stages"><i className="fa-solid fa-user" > Stage</i></button>
           </div>
           { Array(index).fill(true).map((item,ind)=>(
           <Column1 number={number} r={ind}  handleClick={handleClick} str4={norow}/>))}
@@ -177,7 +199,7 @@ function CustomSeat(props) {
         </div>
         <div style={{textAlign:'center'}}>
             <input class="form-check-input" type='checkbox' name='disabled' id='dis' onChange={handleCheck}/>
-            <label class="form-check-label" htmlFor="disabled" >classroom for disabled</label> 
+          
           </div>
           </div>  
           

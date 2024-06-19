@@ -47,6 +47,12 @@ function SignUp() {
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
+
+       if(formData.password!==formData.confirmPassword){
+        alert('password must match')
+       }
+       else{
+       
         
         try {
           
@@ -68,6 +74,7 @@ function SignUp() {
             // Signed in
             if(errors.confirmPassword)
             {
+              
               navigate('/signin')
             }
             else{
@@ -90,7 +97,7 @@ function SignUp() {
             navigate('/signup')
             // ..
         });
-    };
+      }  };
 
     const handleChange = (e) => {
         const {name, value} = e.target;

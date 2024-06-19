@@ -16,6 +16,7 @@ function EditData() {
         coordinator:state.ev.coordinator,
         time:state.ev.time,
         eventDate:state.ev.eventDate,
+        noftickets:state.ev.noftickets,
     
        
     })
@@ -29,11 +30,20 @@ function EditData() {
         
 
     }
+    let t_date=new Date()
+    let e_date=new Date(formData.eventDate)
+    let hr=parseInt(formData.time.slice(0,2))
+    let min=parseInt(formData.time.slice(3,5))
+    e_date.setHours(hr,min,0)
+    //console.log(e_date)
+    //console.log(t_date.getTime())
 
     const handleSubmit=()=>{
         let l;
        
-       
+       if(t_date.getTime()<e_date.getTime()){
+
+      
    
      const docref=doc(db,'events',state.ev.id)
      updateDoc(docref,formData).then(()=>{
@@ -49,18 +59,19 @@ function EditData() {
      })
        
     
-    
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Your Event has been Edited",
-      showConfirmButton: false,
-      timer: 1500
-    });
-    
+ }else{
+  Swal.fire({
+    position: "center",
+    icon: "warning",
+    title: "Invalid date entered",
+    showConfirmButton: false,
+    timer: 1500
+  });
+
+ }
    
     
-    }
+         }
 
 
   return (
@@ -85,6 +96,10 @@ function EditData() {
         <div className='row'>
           <h6 class="mb-0">Event date</h6>
           <input type="date" class="inp" name='eventDate' value={formData.eventDate} onChange={handleChange}/>
+        </div>
+        <div className='row'>
+          <h6 class="mb-0">Number of tickets</h6>
+          <input type="number" class="inp" name='noftickets' value={formData.noftickets} onChange={handleChange}/>
         </div>
        
         <div className='row'>
